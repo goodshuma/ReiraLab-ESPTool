@@ -1,49 +1,25 @@
 {
-    "JT-V0.5.0-sfusion-tuned-mbe": {
+    "TTVR-Rev1.1.0-V1.0.0": {
       "files": [
         { 
           "name": "bootloader.bin", 
           "offset": "0x0000",
-          "path": "./Firmware/JT-V0.5.0-sfusion-tuned-mbe/bootloader.bin"
+          "path": "./Firmware/TTVR-Rev1.1.0-V1.0.0/bootloader.bin"
         },
         { 
           "name": "partitions.bin", 
           "offset": "0x8000",
-          "path": "./Firmware/JT-V0.5.0-sfusion-tuned-mbe/partitions.bin"
+          "path": "./Firmware/TTVR-Rev1.1.0-V1.0.0/partitions.bin"
         },
         {
           "name": "boot_app0.bin", 
           "offset": "0xe000",
-          "path": "./Firmware/JT-V0.5.0-sfusion-tuned-mbe/boot_app0.bin"
+          "path": "./Firmware/TTVR-Rev1.1.0-V1.0.0/boot_app0.bin"
         },
         {
           "name": "firmware.bin",
           "offset": "0x10000", 
-          "path": "./Firmware/JT-V0.5.0-sfusion-tuned-mbe/firmware.bin"
-        }
-      ]
-    },
-    "JT-V0.5.0_MainFW": {
-      "files": [
-        { 
-          "name": "bootloader.bin", 
-          "offset": "0x0000",
-          "path": "./Firmware/JT-V0.5.0_MainFW/bootloader.bin"
-        },
-        { 
-          "name": "partitions.bin", 
-          "offset": "0x8000",
-          "path": "./Firmware/JT-V0.5.0_MainFW/partitions.bin"
-        },
-        {
-          "name": "boot_app0.bin", 
-          "offset": "0xe000",
-          "path": "./Firmware/JT-V0.5.0_MainFW/boot_app0.bin"
-        },
-        {
-          "name": "firmware.bin",
-          "offset": "0x10000", 
-          "path": "./Firmware/JT-V0.5.0_MainFW/firmware.bin"
+          "path": "./Firmware/TTVR-Rev1.1.0-V1.0.0/firmware.bin"
         }
       ]
     }
