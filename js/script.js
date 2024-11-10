@@ -17,13 +17,83 @@ const autoscroll = document.getElementById("autoscroll");
 const lightSS = document.getElementById("light");
 const darkSS = document.getElementById("dark");
 const darkMode = document.getElementById("darkmode");
-const firmware = document.querySelectorAll(".upload .firmware input");
 const progress = document.querySelectorAll(".upload .progress-bar");
 const offsets = document.querySelectorAll(".upload .offset");
 const appDiv = document.getElementById("app");
 const noReset = document.getElementById("noReset");
 
-document.addEventListener("DOMContentLoaded", () => {
+//FWファイル！の配列
+const firmware = document.querySelectorAll(".upload .firmware input");
+
+// グローバル変数の定義
+let firmwareVersions = {};
+
+// JSONファイルを読み込む関数
+async function loadFirmwareConfig() {
+  try {
+    const response = await fetch('./firmware/config.json');
+    if (!response.ok) {
+      throw new Error('設定ファイルの読み込みに失敗しました');
+    }
+    firmwareVersions = await response.json();
+    
+    // セレクトボックスのオプションを更新
+    const select = document.getElementById('firmwareSelect');
+    select.innerHTML = '<option value="">ファームウェアを選択してください</option>';
+    
+    Object.entries(firmwareVersions).forEach(([key, fw]) => {
+      const option = document.createElement('option');
+      option.value = key;
+      option.textContent = key;  // nameプロパティの代わりにkeyを使用
+      select.appendChild(option);
+    });
+  } catch (error) {
+    console.error('設定ファイルの読み込みエラー:', error);
+    logMsg('ファームウェア設定の読み込みに失敗しました');
+  }
+}
+
+// セレクトボックスの変更イベントハンドラー
+document.getElementById('firmwareSelect').addEventListener('change', async (e) => {
+  const selectedFw = e.target.value;
+  if (!selectedFw) return;
+
+  const fwConfig = firmwareVersions[selectedFw];
+  
+  // オフセットとファイルを更新
+  for (let i = 0; i < fwConfig.files.length; i++) {
+    const file = fwConfig.files[i];
+    
+    // オフセットを設定
+    offsets[i].value = file.offset.replace("0x", "");
+    offsets[i].readOnly = true;
+
+    // ファイルを読み込んで設定
+    const response = await fetch(file.path);
+    const blob = await response.blob();
+    
+    const fileObj = new File([blob], file.name, { type: "application/octet-stream" });
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(fileObj);
+    
+    firmware[i].files = dataTransfer.files;
+    
+    // UIを更新
+    const label = firmware[i].parentNode.querySelector("span");
+    label.textContent = file.name;
+    
+    const icon = firmware[i].parentNode.querySelector("svg");
+    if (icon) icon.classList.add("hidden");
+  }
+
+  await checkProgrammable();
+});
+
+//init 
+document.addEventListener("DOMContentLoaded", async () => {
+  
+  await loadFirmwareConfig();
+  
   butConnect.addEventListener("click", () => {
     clickConnect().catch(async (e) => {
       console.error(e);
@@ -59,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadAllSettings();
   updateTheme();
   logMsg("ESP Web Flasher loaded.");
+
 });
 
 function initBaudRate() {
@@ -438,7 +509,7 @@ function loadAllSettings() {
   // Load all saved settings or defaults
   autoscroll.checked = loadSetting("autoscroll", true);
   baudRate.value = loadSetting("baudrate", 115200);
-  darkMode.checked = loadSetting("darkmode", false);
+  darkMode.checked = loadSetting("darkmode", true);
   noReset.checked = loadSetting("noReset", false);
 }
 

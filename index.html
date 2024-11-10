@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
-    <title>Adafruit ESPTool</title>
+    <title>YozoraLaboratory ESPTool</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script>
-      // Redirect to HTTPS if HTTP is requested.
+      // Redirect to HTTPS if HTTP is requested.　
       if (
         window.location.hostname !== "localhost" &&
         window.location.protocol === "http:"
@@ -47,7 +47,7 @@
   <body>
     <header class="header">
       <div class="left">
-        <img src="assets/adafruit-logo.svg" class="Adafruit-Logo">
+        <img src="assets/yozolab-logo.png" class="Logo">
       </div>
       <div class="right">
         <select id="baudRate"></select>
@@ -60,7 +60,7 @@
         you're running Chrome 89 or later.
       </div>
       <div class="subheader">
-        <div class="title left">Adafruit ESPTool</div>
+        <div class="title left">YozoraLaboratory ESPTool</div>
         <div class="right">
           <label for="noReset"> Turn on for Passthrough updates</label>
           <div class="onoffswitch" style="margin-right: 30px;">
@@ -94,10 +94,39 @@
       </div>
       <div id="app">
         <div id="commands">
+
+          <div class="firmware-selector">
+            <select id="firmwareSelect">
+              <!-- JavaScriptで動的に生成 -->
+            </select>
+          </div>
+
+          <!-- !!!!!!!!!!!!! -->
           <div class="upload">
             <label
               >Offset: 0x
               <input class="offset" type="text" value="0" />
+            </label>
+            <label class="firmware">
+              <input type="file" accept=".bin" id="firmwareInput0"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="17"
+                viewbox="0 0 20 17"
+              >
+                <path
+                  d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"
+                />
+              </svg>
+              <span>Choose a file&hellip;</span>
+            </label>
+            <div class="progress-bar hidden"><div></div></div>
+          </div>
+          <div class="upload">
+            <label
+              >Offset: 0x
+              <input class="offset" type="text" value="8000" />
             </label>
             <label class="firmware">
               <input type="file" accept=".bin" />
@@ -118,7 +147,7 @@
           <div class="upload">
             <label
               >Offset: 0x
-              <input class="offset" type="text" value="0" />
+              <input class="offset" type="text" value="e000" />
             </label>
             <label class="firmware">
               <input type="file" accept=".bin" />
@@ -139,28 +168,7 @@
           <div class="upload">
             <label
               >Offset: 0x
-              <input class="offset" type="text" value="0" />
-            </label>
-            <label class="firmware">
-              <input type="file" accept=".bin" />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="17"
-                viewbox="0 0 20 17"
-              >
-                <path
-                  d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"
-                />
-              </svg>
-              <span>Choose a file&hellip;</span>
-            </label>
-            <div class="progress-bar hidden"><div></div></div>
-          </div>
-          <div class="upload">
-            <label
-              >Offset: 0x
-              <input class="offset" type="text" value="0" />
+              <input class="offset" type="text" value="10000" />
             </label>
             <label class="firmware">
               <input type="file" accept=".bin" />
@@ -208,6 +216,9 @@
           </div>
         </div>
         <button id="butClear" type="button">Clear Text</button>
+      </div>
+      <div class="center">
+        Cloned/improved by <a href="https://github.com/yozorakurage">YozoraKurage</a>
       </div>
       <div class="center">
         Written by <a href="https://github.com/makermelissa">Melissa LeBlanc-Williams</a> for Adafruit Industries.

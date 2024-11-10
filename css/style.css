@@ -49,18 +49,24 @@ body {
   font-style: normal;
   font-weight: 400;
   margin: 0;
+  color: #bdbdbd;
 }
 
 p {
   margin: 0;
 }
 
-input,
 select,
 button,
 label {
   font-weight: 600;
   outline: none;
+}
+
+input {
+  font-weight: 600;
+  outline: none;
+  color: #bdbdbd;
 }
 
 div.left {
@@ -162,7 +168,7 @@ div.clear {
 }
 
 .footer a {
-  color: blue;
+  color: #2896ff;
 }
 
 .footer .controls {
@@ -327,6 +333,9 @@ div.clear {
   display: flex;
   align-items: center;
   cursor: pointer;
+
+  border-color: #717171;
+  color: #bdbdbd;
 }
 
 .firmware > svg {
@@ -380,4 +389,17 @@ div.clear {
 }
 .center {
   text-align: center;
+}
+
+.firmware-selector {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  margin: 5px auto;
+  justify-content: center;
+}
+
+.Logo {
+  width: 12.5%;
+  height: 12.5%;
 }

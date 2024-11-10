@@ -1,21 +1,21 @@
 .header {
-  background: #000;
+  background: #0e1114;
   color: #fff;
 }
 
 body {
-  background-color: #333;
-  color: #fff;
+  background-color: #0e1114;
+  color: #bdbdbd;
 }
 
 input, select, button {
-  background-color: #333;
-  color: #fff;
+  background-color: #0e1114;
+  color: #bdbdbd;
 }
 
 .footer button {
   border-color: #fff;
-  background-color: #333;
+  background-color: #0e1114;
   color: #fff;
 }
 
@@ -35,14 +35,14 @@ input, select, button {
 
 
 #commands button {
-  border-color: #fff;
-  background-color: #333;
-  color: #fff;
+  border-color: #cccccc;
+  background-color: #0e1114;
+  color: #cccccc;
 }
 
 #commands button:hover {
   background-color: #fff;
-  color: #333;
+  color: #0e1114;
 }
 
 .notSupported, .notSupported a {
@@ -51,14 +51,13 @@ input, select, button {
 }
 
 .firmware {
-  border-color: #fff;
-  color: #fff;
+  border-color: #717171;
 }
 
 .firmware:focus,
 .firmware:hover {
   background-color: #fff;
-  color: #333;
+  color: #0e1114;
 }
 
 .firmware:disabled {
@@ -72,7 +71,7 @@ input, select, button {
 
 input {
   background-color: #fff;
-  color: #333;
+  color: #000;
 }
 
 #commands .buttons button:disabled,
